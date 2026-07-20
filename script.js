@@ -55,6 +55,14 @@ randomBtn.addEventListener('click', function () {
   currentMode = 'random';
 });
 
+resetBtn.addEventListener('click', function () {
+  const squares = document.querySelectorAll('.square');
+  squares.forEach(square => {
+    square.style.backgroundColor = '';
+    square.style.opacity = '0';
+  });
+});
+
 sizeBtn.addEventListener('click', function () {
   const inputText = +sizeInput.value;
   if (!inputText || inputText > 100 || inputText < 1) {
