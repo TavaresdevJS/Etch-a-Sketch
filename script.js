@@ -7,12 +7,11 @@ const resetBtn = document.querySelector('.resetBtn');
 const sizeBtn = document.querySelector('.sizeBtn');
 const sizeInput = document.querySelector('.input');
 
-let currentMode = 'random';
+let currentMode = 'random'; // tracks which paint mode is active: 'random' | 'white' | 'black'
 
 function createGrid(size) {
-  // Clear existing squares
-  grid.innerHTML = '';
-  const squareSize = 480 / size;
+  grid.innerHTML = ''; // wipe previous grid before building a new one
+  const squareSize = 480 / size; // scale each square so the total grid stays 480px regardless of size
 
   // Creating squares loop
   for (let i = 0; i < size * size; i++) {
@@ -20,12 +19,13 @@ function createGrid(size) {
     square.classList.add('square');
     square.style.width = `${squareSize}px`;
     square.style.height = `${squareSize}px`;
-    square.style.opacity = '0';
+    square.style.opacity = '0'; // start invisible so it fades in as the user hovers
     square.addEventListener('mouseover', paintSquare);
     grid.appendChild(square);
   }
 }
 
+// Shared handler for every square; behavior branches on currentMode
 const paintSquare = function (e) {
   let currentOpacity = parseFloat(e.target.style.opacity);
   if (currentMode === 'random') {
@@ -58,8 +58,8 @@ randomBtn.addEventListener('click', function () {
 resetBtn.addEventListener('click', function () {
   const squares = document.querySelectorAll('.square');
   squares.forEach(square => {
-    square.style.backgroundColor = '';
-    square.style.opacity = '0';
+    square.style.backgroundColor = ''; // clear back to CSS default (transparent)
+    square.style.opacity = '0'; // match createGrid's initial state
   });
 });
 
