@@ -5,10 +5,13 @@ const sizeInput = document.querySelector('.input');
 
 function createGrid(size) {
   grid.innerHTML = '';
+  const squareSize = 480 / size;
 
   for (let i = 0; i < size * size; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
+    square.style.width = `${squareSize}px`;
+    square.style.height = `${squareSize}px`;
     square.style.opacity = '0';
     square.addEventListener('mouseover', function () {
       let currentOpacity = parseFloat(square.style.opacity);
@@ -27,7 +30,7 @@ function createGrid(size) {
 sizeBtn.addEventListener('click', function () {
   const inputText = +sizeInput.value;
   if (!inputText || inputText > 100 || inputText < 1) {
-    alert('Wrong input, try a number from 1 to 16');
+    alert('Wrong input, try a number from 1 to 100');
   } else {
     createGrid(inputText);
   }
